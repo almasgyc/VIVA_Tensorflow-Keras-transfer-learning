@@ -1,0 +1,9 @@
+{
+  "train_path" :"dataset",
+  "batch_size_train":"20",
+  "category_num": "7",
+  "learning_rate":"0.00001",
+  "epoch_num":"150",
+  "steps_per_epoch":"7",
+  "output_name":"color7.h5"
+}
