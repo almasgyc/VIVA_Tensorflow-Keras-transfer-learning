@@ -13,13 +13,13 @@ from keras.models import Model
 from keras.applications import imagenet_utils
 import json
 
-# json读取
+# read config.json
 def jsonReader():
     with open("./config.json", 'r') as load_f:
         jsonDict = json.load(load_f)
         return jsonDict
 
-# 获取json数据
+# read data from config.json
 jsonData = jsonReader()
 train_path = jsonData['train_path'] + '/train'
 valid_path = jsonData['train_path'] + '/valid'
@@ -35,7 +35,7 @@ output_name = jsonData['output_name']
 train_batches = ImageDataGenerator(preprocessing_function=keras.applications.mobilenet.preprocess_input).flow_from_directory(
     train_path, target_size=(224,224), batch_size=bsize)
 valid_batches = ImageDataGenerator(preprocessing_function=keras.applications.mobilenet.preprocess_input).flow_from_directory(
-    valid_path, target_size=(224,224), batch_size=5)
+    valid_path, target_size=(224,224), batch_size=10)
 test_batches = ImageDataGenerator(preprocessing_function=keras.applications.mobilenet.preprocess_input).flow_from_directory(
     test_path, target_size=(224,224), batch_size=2, shuffle=False)
 
