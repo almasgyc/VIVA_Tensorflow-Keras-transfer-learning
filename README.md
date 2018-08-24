@@ -15,7 +15,8 @@ Step 6 : Integration With Front-End Web application (PWA + Tensorflow JS) <br>
 https://github.com/pdaexample/TFJS_Example
 
 For the full instrudction, please refer to <br>
--English : VIVA installation guide https://github.com/almasgyc/Tensorflow-Keras-transfer-learning/blob/master/VIVA%20Installation%20guide.pdf
+-English : VIVA installation guide <br> 
+https://github.com/almasgyc/Tensorflow-Keras-transfer-learning/blob/master/VIVA%20Installation%20guide.pdf
 
 -中文 : VIVA 安裝指南 <br> https://github.com/almasgyc/Tensorflow-Keras-transfer-learning/blob/master/VIVA%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97.pdf
 
