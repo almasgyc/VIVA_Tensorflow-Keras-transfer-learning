@@ -3,6 +3,7 @@
 
 import numpy as np
 import keras
+from time import time
 from keras import backend as K
 from keras.layers.core import Dense, Activation
 from keras.optimizers import Adam
@@ -11,6 +12,7 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.preprocessing import image
 from keras.models import Model
 from keras.applications import imagenet_utils
+from keras.callbacks import TensorBoard
 import json
 
 # read config.json
@@ -45,24 +47,18 @@ mobile = keras.applications.mobilenet.MobileNet()
 x = mobile.layers[-6].output
 predictions = Dense(catnum, activation='softmax')(x)
 model = Model(inputs=mobile.input, outputs=predictions)
+tensorboard = TensorBoard(log_dir="logs/{}".format(time()))
 
 model.summary()
 
 for layer in model.layers[:-5]:
     layer.trainable = False
 model.compile(Adam(lr=lrate), loss='categorical_crossentropy', metrics=['accuracy'])
-model.fit_generator(train_batches, steps_per_epoch=steps, 
-                    validation_data=valid_batches, validation_steps=2, epochs=epoch_num, verbose=2)
+model.fit_generator(train_batches, steps_per_epoch=steps,
+                    validation_data=valid_batches, validation_steps=2, epochs=epoch_num, verbose=2, , callbacks=[tensorboard])
 
 model.save(output_name)
 
 predictions = model.predict_generator(test_batches,steps=1, verbose=2)
 print(predictions)
 print(train_batches.class_indices)
-
-
-
-
-
-
-
